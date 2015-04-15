@@ -1,0 +1,112 @@
+<header>
+	<link rel="stylesheet" type="text/css" href="http://tympanus.net/Tutorials/CustomDropDownListStyling/css/style.css" />
+	<script type="text/javascript" src="http://tympanus.net/Tutorials/CustomDropDownListStyling/js/modernizr.custom.79639.js"></script> 
+	<noscript><link rel="stylesheet" type="text/css" href="http://tympanus.net/Tutorials/CustomDropDownListStyling/css/noJS.css" /></noscript>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="styles/main.css">
+
+</header>
+<br>
+<div class='title'> Starting a Debate </div>
+<div align="center">
+	<table border="0">
+		<td valign="center">
+			<br><br><br>
+			<div class='subtitle'>Type:</div>
+		</td>
+
+		<td valign="center">
+			<section class='main' style="z-index:10">
+				<div class='wrapper-demo'>
+					<div id='dd' class='wrapper-dropdown-5' tabindex='1'><p id="Mode">Parlimentary</p>
+						<ul class='dropdown'>
+							<li id="Parlimentary" style="display:block"><a onclick="setDebateType('Parlimentary')">Parlimentary</a></li>
+							<li id="Ethics" style="display:block"><a onclick="setDebateType('Ethical Delemma')">Ethical Delemma</a></li>
+							<li id="OneVOne" style="display:block"><a onclick="setDebateType('One vs One')">One vs One</a></li>
+							<li id="Presidential" style="display:block"><a onclick="setDebateType('Presidential')">Presidential</a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</td>
+
+		<tr>
+			<td>
+				<br><br><br>
+				<div class='subtitle'>Privacy:</div>
+
+			</td>
+			<td>
+
+				<section class='main'>
+					<div class='wrapper-demo'>
+						<div id='dd2' class='wrapper-dropdown-5' tabindex='1' onclick=""><p id="Privacy">Public</p>
+							<ul class='dropdown'>
+								<li id="Parlimentary" style="display:block"><a onclick="setPrivacy('Public')">Public</a></li>
+								<li id="Ethics" style="display:block"><a onclick="setPrivacy('Private')">Private</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+			</td><tr>
+			<td>
+				<br><br><br>
+				<div class='subtitle'>Is Political?:</div></td>
+				<td>
+
+					<section class='main'>
+						<div class='wrapper-demo'>
+							<div id='dd3' class='wrapper-dropdown-5' tabindex='1' onclick=""><p id="Political">Political</p>
+								<ul class='dropdown'>
+									<li id="Parlimentary" style="display:block"><a onclick="setIsPolitical('Political')">Political</a></li>
+									<li id="Ethics" style="display:block"><a onclick="setIsPolitical('Fun')">Fun</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+
+				</td><tr>
+				<td>
+					<br><br><br>
+					<div class='subtitle'>Seriousness:</div></td>
+				</td>
+
+				<td>
+					<br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="range" name="points" id="points" value="2" min="0" max="4">
+				</td>
+				<tr>
+					<td>
+						<br><br><br>
+						<div class='subtitle'>Topic:</div></td>
+					</td>
+					<td>
+						<br><br><br>
+						<textarea class="form-control" rows="5" cols="40" id="comment"></textarea>
+
+					</td>
+					<tr>
+						<td>
+							<br><br><br>
+							<div class='subtitle'>Name:</div></td>
+						</td>
+						<td>
+							<br><br><br>
+							<input type="text" class="form-control" id="Name" style="font-family:'Helvetica', Times, serif;  
+							font-size: 22px;"></input>
+						</td>
+
+					</td>
+				</table></div>
+				<br><br>
+				<div align="center">
+					<a onclick="createDebate()" class="createButton">Make Debate Room</a>
+				</div>
+				
+				<br><br><br>
+			</div>
+
+			<script type="text/javascript" src="js/dropdown.js"></script>
+			<script type="text/javascript" src="js/create.js"></script>

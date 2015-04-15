@@ -1,0 +1,191 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5em;
+}
+@font-face {
+	font-family: myFont;
+	src: url(/fonts/basictitlefont.ttf);
+}
+
+div.title {
+	font-family: myFont;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 350%;
+	color: #838383;
+}
+
+div.timer {
+	font-family: myFont;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 420%;
+	color: #838383;
+}
+
+div.subtitle {
+	font-family: myFont;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 175%;
+	color: #838383;
+}
+
+div.back_btn {
+	font-size: 140%;
+	color: #838383;
+}
+
+
+
+button.StartDebate {
+	height: 45px;
+	border-color: #529ECC;
+	background: none repeat scroll 0% 0% #529ECC;
+	font-size: 16px;
+	width: 100%;
+	margin: 12px 0px 0px;
+	padding: 0px 10px;
+	padding-top: 0px;
+	padding-right-value: 10px;
+	padding-bottom: 0px;
+	padding-left-value: 10px;
+	padding-left-ltr-source: physical;
+	padding-left-rtl-source: physical;
+	padding-right-ltr-source: physical;
+	padding-right-rtl-source: physical;
+	font-size: 20px;
+	line-height: 28px;
+	color: #FFF;
+	font-weight: bold;
+	border-width: 1px;
+	border-style: solid;
+}
+
+
+button.JoinDebate {
+	height: 45px;
+	border-color: #76D847;
+	background: none repeat scroll 0% 0% #76D847;
+	font-size: 16px;
+	width: 100%;
+	margin: 1px 0px 0px;
+	padding: 0px 10px;
+	padding-top: 0px;
+	padding-right-value: 10px;
+	padding-bottom: 0px;
+	padding-left-value: 10px;
+	padding-left-ltr-source: physical;
+	padding-left-rtl-source: physical;
+	padding-right-ltr-source: physical;
+	padding-right-rtl-source: physical;
+	font-size: 20px;
+	line-height: 28px;
+	color: #FFF;
+	font-weight: bold;
+	border-width: 1px;
+	border-style: solid;
+}
+
+button.ViewDebate {
+	height: 45px;
+	border-color: #D6D946;
+	background: #D6D946;
+	font-size: 16px;
+	width: 100%;
+	margin: 1px 0px 0px;
+	padding: 0px 10px;
+	padding-top: 0px;
+	padding-right-value: 10px;
+	padding-bottom: 0px;
+	padding-left-value: 10px;
+	padding-left-ltr-source: physical;
+	padding-left-rtl-source: physical;
+	padding-right-ltr-source: physical;
+	padding-right-rtl-source: physical;
+	font-size: 20px;
+	line-height: 28px;
+	color: #FFF;
+	font-weight: bold;
+	border-width: 1px;
+	border-style: solid;
+}
+
+
+table.debates_table {
+	border-collapse: collapse;
+
+}
+
+
+table.debates_table:hover {
+	cursor:pointer;
+}
+
+p.skip_timer:hover {
+	cursor:pointer;
+}
+
+td.debates_td, th.debates_th {
+	border: 2px solid #A3A3A3;
+	background: #BABABA;
+	text-align:center;
+}
+
+td.debates_td2, th.debates_th2 {
+	border: 2px solid #A3A3A3;
+
+	background: #CECECE;
+	text-align:center;
+}
+
+p.debates_p{
+	color: #454545;
+}
+
+.createButton {
+	background-color:#44c767;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.createButton:hover {
+	background-color:#5cbf2a;
+}
+.createButton:active {
+	position:relative;
+	top:1px;
+}
+
+.endButton {
+	background-color:#D80000;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #D80000;
+	display:inline-block;
+	cursor:pointer;
+	color:#fff;
+	font-family:arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #C00000;
+}
+.endButton:hover {
+	background-color:#C80000;
+}
+.endButton:active {
+	position:relative;
+	top:1px;
+}
