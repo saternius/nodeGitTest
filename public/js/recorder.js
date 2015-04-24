@@ -5,7 +5,7 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 var peerId = "";
 var peer; 
 var myStream;
-var socket = io.connect('http://localhost:8000');
+var socket = io.connect('http://davidsilin.me:8000');
 
 //set the peer id
 if($('#isDebatorOne').val() == "first"){
@@ -19,7 +19,6 @@ if($('#isDebatorOne').val() == "first"){
   peerId = "debatorTwo";
   connectToServer();
   socket.emit('debator ready', {"debator":"second", "id":$("#debateID").text()});
-
 
 }else {
   console.log($("#debateID").text());
@@ -62,12 +61,9 @@ socket.on('set sender', function(msg){
           peer.call('debatorTwo', myStream)
           $('#my-video').prop('src', '');
         }
-      }, function(err) {
-        console.log('Failed to get local stream' ,err);
-      });
+      }, function(err) {});
     } else {
       for(var i = 0; i<myPeers.length; i++){
-        console.log(myPeers[i]);
         peer.call(myPeers[i], myStream);
       }
       if(msg["debator"] == "second"){
