@@ -15,9 +15,6 @@ function createDebate(){
 		"political":$('#Political').html(), "seriousness":$("#points").val(), "topic":$("#comment").val(), 
 		"debator1":$("#Name").val()}, function(data){
 			console.log(data);
-			window.location.href = "/debateScreen/" + data.id + "/"+data.key1;
+			window.location.href = "/debateScreen/" + data.id + "/"+data.key;
 		});
-
-
-
 }

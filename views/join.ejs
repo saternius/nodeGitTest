@@ -1,4 +1,6 @@
 <header>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
@@ -7,6 +9,7 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 
 	<link rel="stylesheet" href="styles/main.css">
 </header>
@@ -21,13 +24,14 @@
 		<%for(var i = 0; i<lookingDebates.length; i++){%>
 
 		<br>
-		<a href=<%="joinDebate/" +i%>><table href='#' class='debates_table' bgcolor='#CECECE' width='80%' height = '5%' border='1' border-color='black'>
+		<a onclick=<%="joinDebateByID("+lookingDebates[i].id + ");"%>><table href='#' class='debates_table' bgcolor='#CECECE' width='80%' height = '5%' border='1' border-color='black'>
 			<td class='debates_td' width='10%'><p class='debates_p'> <b>Type:</b> <%=lookingDebates[i].type%></p></td>
 			<td class='debates_td' width='10%'><p class='debates_p'> <b>Seriousness:</b><%=lookingDebates[i].seriousness%>/4</p></td>
 			<td class='debates_td' width='20%'><p class='debates_p'> <b>Opponent:</b><%=lookingDebates[i].debator1%></p></td>
 			<tr>
 				<td colspan = '6' class='debates_td2' width='100%'><p class='debates_p'> <b>Topic:</b> <%=lookingDebates[i].topic%></p></td>
 			</table></a>
-		<%}%>
+			<%}%>
 		</div>
 	</body>
+	<script type="text/javascript" src="js/join.js"></script>

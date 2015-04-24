@@ -21,24 +21,53 @@ exports.getCreate = function(req, res){
 
 exports.getDebateScreen = function(req, res){
 	for(var i = 0; i<lookingDebates.length; i++){
-		if(lookingDebates[i].id == req.params.id && req.params.key1 == lookingDebates[i].key1){
+		if(lookingDebates[i].id == req.params.id && req.params.key == lookingDebates[i].key1){
 			debate = lookingDebates[i];
-			res.render("debateScreen", {"debate":debate, "debator1":"true"});
+			res.render("debateScreen", {"debate":debate, "debator":"first"});
+			return;
+		}
+		if(lookingDebates[i].id == req.params.id && req.params.key == lookingDebates[i].key2){
+			debate = lookingDebates[i];
+			res.render("debateScreen", {"debate":debate, "debator":"second"});
+			currentDebates.push(lookingDebates[i]);
+			lookingDebates.splice(i,1);
+			return;
+		}
+	}
+	for(var i = 0; i<currentDebates.length; i++){
+		if(currentDebates[i].id == req.params.id && req.params.key == currentDebates[i].key1){
+			debate = currentDebates[i];
+			res.render("debateScreen", {"debate":debate, "debator":"first"});
+			return;
+		}
+		if(currentDebates[i].id == req.params.id && req.params.key == currentDebates[i].key2){
+			debate = currentDebates[i];
+			res.render("debateScreen", {"debate":debate, "debator":"second"});
+			return;
 		}
 	}
 	// res.render("index");
 }
 
 exports.getView = function(req, res){
-	res.render("view");
+	res.render("view", {"currentDebates": currentDebates});
+}
+
+exports.viewDebate = function(req, res){
+	for(var i = 0; i<currentDebates.length; i++){
+		if(currentDebates[i] != null && currentDebates[i].id == req.params.id){
+			res.render("debateScreen", {"debate":currentDebates[i], "debator":"viewer"});
+		}
+	}
 }
 
 exports.joinDebate = function(req, res){
 	var debate = {};
 	for(var i = 0; i<lookingDebates.length; i++){
-		if(lookingDebates[i].id == req.params.id){
+		if(lookingDebates[i] != null && lookingDebates[i].id == req.params.id){
 			debate = lookingDebates[i];
-			res.render("debateScreen", {"debate":debate, "debator1":"false"});
+			debate['key2'] = Math.floor(100000*Math.random());
+			res.send({"key": debate['key2']})
 		}
 	}
 	// res.render("join", {"lookingDebates":lookingDebates});
@@ -56,7 +85,9 @@ exports.createDebate = function(req, res){
 		"topic":req.body.topic,
 		"debator1":req.body.debator1,
 		"key1":key1,
-		"id":currentId
+		"id":currentId,
+		"viewerINC":0,
+		"viewers": []
 	}
 	console.log("created debate");
 	console.log(debate);
@@ -64,6 +95,14 @@ exports.createDebate = function(req, res){
 	currentId++;
 	lookingDebates.push(debate);
 
-	res.send({"id":currentId-1, "key1":key1});
+	res.send({"id":currentId-1, "key":key1});
 }
 
+
+exports.getDebates = function(){
+	return lookingDebates;
+}
+
+exports.getCurrentDebates = function(){
+	return currentDebates;
+}

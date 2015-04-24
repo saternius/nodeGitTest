@@ -2,20 +2,19 @@
 	<link rel="stylesheet" type="text/css" href="http://tympanus.net/Tutorials/CustomDropDownListStyling/css/style.css" />
 	<script type="text/javascript" src="http://tympanus.net/Tutorials/CustomDropDownListStyling/js/modernizr.custom.79639.js"></script> 
 	<noscript><link rel="stylesheet" type="text/css" href="http://tympanus.net/Tutorials/CustomDropDownListStyling/css/noJS.css" /></noscript>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="../../styles/main.css">
-
 	<script src="http://cdn.peerjs.com/0.3/peer.min.js"></script>
-
+	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 </header>
 <br>
 
-<input type="text" style="display:none;" id="isDebatorOne" value=<%=debator1%>> </input>
+<input type="text" style="display:none;" id="isDebatorOne" value=<%=debator%>> </input>
 
 <body>
 	<div class='title'> Debate </div>
 	<div align="center">
-		<div>Id: <%= debate.id%></div>
+		<div>Id:<div id="debateID"><%=debate.id%></div></div>
 
 		<table border="0">
 			<td valign="center">
@@ -25,45 +24,51 @@
 			<tr>
 				<td>
 					<br><br><br>
-					<div class='subtitle'>Political: Fun</div></td>
-					<tr>
-						<td>
-							<br><br><br>
-							<div class='subtitle'>Seriousness: 2</div></td>
-						</td>
-						<tr>
-							<td>
-								<br><br><br>
-								<div class='subtitle'>Topic: Should students wear uniforms in school?</div></td>
-							</td>
-							<tr>
-								<td>
-									<br><br><br>
-									<div class='subtitle'>For: Stephanie (speaking) time left: 3:22</div></td>
-								</td>
-								<tr>
-									<td>
-										<br><br><br>
-										<div class='subtitle'>Opposition: Jake</div></td>
-									</td>
-									<td>
-										<br><br><br>
-										<div class='subtitle'></div></td>
-									</td>
-									<tr>
-										<td>
-											<div align="center">
-												<a class="endButton">End turn early</a>
-											</div>
-										</td>
-									</td>
-								</table></div>
-								<br><br>
+					<div class='subtitle'>Political: Fun</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br><br><br>
+					<div class='subtitle'>Seriousness: 2</div></td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br><br><br>
+					<div class='subtitle'>Topic: Should students wear uniforms in school?</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br><br><br>
+					<div class='subtitle'>For: Stephanie (speaking) time left: 3:22</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br><br><br>
+					<div class='subtitle'>Opposition: Jake</div>
+				</td>
+			</tr>
+			<td>
+				<br><br><br>
+				<div class='subtitle'></div>
+			</td>
+			<tr>
+				<td>
+					<div align="center">
+						<a class="endButton">End turn early</a>
+					</div>
+				</td>
+			</tr>
+		</table></div>
+		<br><br>
 
-								<br><br><br>
-							</div>
-							<script type="text/javascript" src="../../js/recorder.js"></script>
-						</body>
-						<video id="my-video" autoplay></video>
+		<br><br><br>
+	</div>
+	<script type="text/javascript" src="../../js/recorder.js"></script>
+</body>
+<video id="my-video" autoplay></video>
 
 

@@ -5,19 +5,71 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var mainController = require('./controllers/main');
 
-var http = require('http');
 var request = require('request');
 var async = require('async');
 var parseString = require('xml2js').parseString;
 var fs = require('fs');
-var holla = require('holla'); //holla
-
 
 // Create our Express application
 var app = express();
 
-var server = require('http').createServer(app).listen(5000); //holla
-var rtc = holla.createServer(server); //holla
+var http = require('http');
+var current = 'second';
+
+
+var server = http.createServer(app).listen(8000, function(){
+  console.log('Express server listening on port ' + 8000);
+});
+
+var io = require('socket.io').listen(server);
+
+io.on('connection', function(socket){
+  
+  socket.on('viewing debate', function(msg){
+  	var debates = mainController.getCurrentDebates();
+  	console.log(msg["id"]);
+  	for(var i = 0; i<debates.length; i++){
+  		if(debates[i]["id"] === parseInt(msg["id"])){
+  			debates[i]["viewerINC"]++;
+  			debates[i]["viewers"].push(msg["id"] + "viewer"+ (debates[i]["viewerINC"]-1));
+  			io.emit('set viewer', {"viewerID": (msg["id"] + "viewer"+ (debates[i]["viewerINC"]-1))});
+  			console.log(debates[i]["viewerINC"])
+  			return;
+  		}
+  	}
+  });
+
+  socket.on('debator ready', function(msg){
+  	if(msg['debator'] == 'second'){
+  		setInterval(startSwitching, 10000, socket, parseInt(msg['id']));
+  	}
+  })
+
+  socket.on('ready', function(msg){
+  	io.emit('call viewer', {"viewerID": msg["viewerID"]});
+  });
+
+});
+
+function startSwitching(socket, id){
+	var viewers = [];
+	var curDevs = mainController.getCurrentDebates();
+	for(var i = 0; i<curDevs.length; i++){
+		if(curDevs[i].id === id){
+			viewers = curDevs[i]["viewers"];
+		}
+	}
+	if(current === 'second'){
+		io.emit('set sender', {'debator':'first', "viewers":viewers});
+		current = 'first'
+	} else {
+		io.emit('set sender', {'debator':'second', "viewers":viewers});
+		current = 'second'
+	}
+}
+
+
+
 
 
 app.set("view engine", "ejs");
@@ -38,6 +90,8 @@ app.use(function (req, res, next) {
 // Create our Express router
 var router = express.Router();
 
+
+
 app.use(express.static(__dirname + "/public"));
 console.log(__dirname + "/public")
 
@@ -54,15 +108,20 @@ console.log(__dirname + "/public")
  router.route('/view')
  .get(mainController.getView);
 
- router.route('/debateScreen/:id/:key1')
+ router.route('/viewDebate/:id')
+ .get(mainController.viewDebate);
+
+ router.route('/debateScreen/:id/:key')
  .get(mainController.getDebateScreen);
 
  router.route('/joinDebate/:id')
- .get(mainController.joinDebate);
+ .post(mainController.joinDebate);
+
+
 
 
 // Register all our routes with /api
 app.use('/', router);
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 // Start the server
 app.listen(port);
