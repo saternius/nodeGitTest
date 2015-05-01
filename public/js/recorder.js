@@ -74,18 +74,21 @@ socket.on('call viewer', function(msg){
 
 socket.on('set sender', function(msg){
   console.log('switching sender');
+  if(msg["id"] != parseInt($("#debateID").text())){
+    return;
+  }
   //set the timer
+
   myTimer.stop();
   myTimer.start(msg["speakingTime"]/1000);
 
-  if($('#isDebatorOne').val() == msg["debator"] && msg["id"] == parseInt($("#debateID").text())){
+  if($('#isDebatorOne').val() == msg["debator"]){
     var myPeers = msg["viewers"];
     for(var i = 0; i<myPeers.length; i++){
       peer.call(myPeers[i], myStream);
     }
     if(msg["debator"] == "second"){
       peer.call($("#debateID").text()+'debatorOne', myStream)
-
       $('#my-video').prop('muted', true);
       $('#my-video').prop('src', URL.createObjectURL(myStream));
     } else {

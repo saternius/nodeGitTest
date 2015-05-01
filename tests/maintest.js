@@ -2,6 +2,7 @@
 
 var assert = require("assert")
 var mainController = require('../controllers/main');
+var timeController = require('../controllers/debateTime');
 var request = require('dupertest');
 
 describe("adding debate route should work", function(){
@@ -37,13 +38,24 @@ describe("adding debate route should work", function(){
           render: function(ob) {
           	this.send({});
           },
+          send: function(ob) {
+          	this.send({});
+          }
       })
 		.end(function(response) {
-			console.log(mainController.getDebates().length);
-			assert(mainController.getDebates().length == 0);
+			// console.log(mainController.getDebates().length);
+			assert(mainController.getDebates().length == 1);
 			done();
 		});
 	});
+})
 
+describe("the time functionality should work correctly", function(){
+	it("should work correctly for a parliamentary debate", function(done){
+		var debate = {"type":"Parlimentary", "debateState":0}
+
+		assert(timeController.getNextDelayTime(debate) == (1000)*60*5)
+		done();
+	})
 })
 

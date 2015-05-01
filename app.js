@@ -62,10 +62,10 @@ io.on('connection', function(socket){
           console.log("found correctly");
           debates[i]["readyDebators"].push(msg['debator']);
           debate = debates[i]
-          var time = debTController.getNextDelayTime(debate);
-          io.emit("set sender", {"id":id, "debator":"first", "viewers":debate["viewers"], "speakingTime":time})
-          debate["myTimeout"] = setTimeout(startSwitching, time, socket, id);
-          debate["debateState"]++;
+          // var time = debTController.getNextDelayTime(debate);
+          // io.emit("set sender", {"id":id, "debator":"first", "viewers":debate["viewers"], "speakingTime":time})
+          // debate["myTimeout"] = setTimeout(startSwitching, time, socket, id);
+          startSwitching(socket, id);
           break;
         }
       }
@@ -87,11 +87,11 @@ socket.on('end early', function(msg){
   debates = mainController.getCurrentDebates();
   for(var i = 0; i<debates.length; i++){
     if(debates[i]["id"] === msg["id"]){
-      if(debates[i]["debateState"]%2 == 1 && msg["secret"] == debates[i]["key1"]){
+      if(debates[i]["debateState"]%2 == 0 && msg["secret"] == debates[i]["key1"]){
         clearTimeout(debates[i]["myTimeout"]);
         debates[i]["myTimeout"] = startSwitching(socket, msg["id"]);
         return;
-      }else if(debates[i]["debateState"]%2 == 0 && msg["secret"] == debates[i]["key2"]){
+      }else if(debates[i]["debateState"]%2 == 1 && msg["secret"] == debates[i]["key2"]){
         clearTimeout(debates[i]["myTimeout"]);
         debates[i]["myTimeout"] = startSwitching(socket, msg["id"]);
         return;
@@ -111,7 +111,7 @@ function startSwitching(socket, id){
 			viewers = curDevs[i]["viewers"];
 		}
 	}
-	if(debate["debateState"]%2 == 1){
+	if(debate["debateState"]%2 == 0){
     var nextTime = debTController.getNextDelayTime(debate)
     if(nextTime != -1){
       io.emit('set sender', {'debator':'first', "viewers":viewers, "id":id, "speakingTime":nextTime});
