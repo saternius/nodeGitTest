@@ -28,12 +28,12 @@ io.on('connection', function(socket){
 
   socket.on('viewing debate', function(msg){
   	var debates = mainController.getCurrentDebates();
-  	console.log(msg["id"]);
+  	console.log("viewing: " +msg["id"]);
   	for(var i = 0; i<debates.length; i++){
   		if(debates[i]["id"] === parseInt(msg["id"])){
   			debates[i]["viewerINC"]++;
   			debates[i]["viewers"].push(msg["id"] + "viewer"+ (debates[i]["viewerINC"]-1));
-  			io.emit('set viewer', {"viewerID": (msg["id"] + "viewer"+ (debates[i]["viewerINC"]-1))});
+  			io.emit('set viewer', {"viewerID": (msg["id"] + "viewer"+ (debates[i]["viewerINC"]-1)), "id":parseInt(msg["id"])});
   			console.log(debates[i]["viewerINC"])
   			return;
   		}
@@ -75,7 +75,12 @@ io.on('connection', function(socket){
   })
 
 socket.on('ready', function(msg){
- io.emit('call viewer', {"viewerID": msg["viewerID"]});
+  debates = mainController.getCurrentDebates();
+  for(var i = 0; i<debates.length; i++){
+    if(debates[i]["id"] == msg["id"]){
+      io.emit('call viewer', {"viewerID": msg["viewerID"], "id":msg["id"], "debateState":debates[i]["debateState"]});
+    }
+  }
 });
 
 socket.on('end early', function(msg){
