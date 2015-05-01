@@ -33,14 +33,14 @@ if($('#isDebatorOne').val() == "first" ){
   peerId = $("#debateID").text()+"debatorOne";
   connectToServer();
   setupMyStream();
-  socket.emit('debator ready', {"debator":"first", "id":$("#debateID").text()});
+  // socket.emit('debator ready', {"debator":"first", "id":$("#debateID").text()});
 
 } else if ($('#isDebatorOne').val() == "second") {
 
   peerId = $("#debateID").text()+"debatorTwo";
-  setupMyStream();
   connectToServer();
-  socket.emit('debator ready', {"debator":"second", "id":$("#debateID").text()});
+  setupMyStream();
+  // socket.emit('debator ready', {"debator":"second", "id":$("#debateID").text()});
 
 }else {
   console.log($("#debateID").text());
@@ -88,13 +88,15 @@ socket.on('set sender', function(msg){
       peer.call(myPeers[i], myStream);
     }
     if(msg["debator"] == "second"){
+      $('#my-video').prop('muted', true);
+      $('#my-video').prop('src', URL.createObjectURL(myStream));
       peer.call($("#debateID").text()+'debatorOne', myStream)
-      $('#my-video').prop('muted', true);
-      $('#my-video').prop('src', URL.createObjectURL(myStream));
+
     } else {
-      peer.call($("#debateID").text()+'debatorTwo', myStream)
       $('#my-video').prop('muted', true);
       $('#my-video').prop('src', URL.createObjectURL(myStream));
+      peer.call($("#debateID").text()+'debatorTwo', myStream)
+
     }
   }
 })
@@ -120,11 +122,21 @@ function setupMyStream(){
 }
 
 function connectToServer(){
-  peer = new Peer(peerId, {key: 'lwjd5qra8257b9'});
+  peer = new Peer(peerId, {key: 'uvjblz83getutyb9'});
 
   //connect to the server
   peer.on('open', function(id) {
     console.log('My peer ID is: ' + id);
+
+    if($('#isDebatorOne').val() == "first" ){
+
+      socket.emit('debator ready', {"debator":"first", "id":$("#debateID").text()});
+
+    } else if ($('#isDebatorOne').val() == "second") {
+
+      socket.emit('debator ready', {"debator":"second", "id":$("#debateID").text()});
+
+    }
   });
 
   peer.on('call', function(call) {
