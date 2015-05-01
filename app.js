@@ -87,11 +87,11 @@ socket.on('end early', function(msg){
   debates = mainController.getCurrentDebates();
   for(var i = 0; i<debates.length; i++){
     if(debates[i]["id"] === msg["id"]){
-      if(debates[i]["debateState"]%2 == 0 && msg["secret"] == debates[i]["key1"]){
+      if(debates[i]["debateState"]%2 == 1 && msg["secret"] == debates[i]["key1"]){
         clearTimeout(debates[i]["myTimeout"]);
         debates[i]["myTimeout"] = startSwitching(socket, msg["id"]);
         return;
-      }else if(debates[i]["debateState"]%2 == 1 && msg["secret"] == debates[i]["key2"]){
+      }else if(debates[i]["debateState"]%2 == 0 && msg["secret"] == debates[i]["key2"]){
         clearTimeout(debates[i]["myTimeout"]);
         debates[i]["myTimeout"] = startSwitching(socket, msg["id"]);
         return;
