@@ -6,61 +6,39 @@
 	<link rel="stylesheet" href="../../styles/main.css">
 	<script src="http://cdn.peerjs.com/0.3/peer.min.js"></script>
 	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+	<script type="text/javascript" src="../../js/timer.js"></script>
 </header>
 <br>
 
 <input type="text" style="display:none;" id="isDebatorOne" value=<%=debator%>> </input>
+<input type="text" style="display:none;" id="secret" value=<%=secret%>> </input>
+
 
 <body>
+	<div >
+		<video id="my-video" style="background-color: black;" autoplay>
+			If you dont see any video 
+		</video>
+	</div>
 	<div class='title'> Debate </div>
-	<div align="center">
+	<div align="right">
 		<div>Id:<div id="debateID"><%=debate.id%></div></div>
 
 		<table border="0">
-			<td valign="center">
-				<br><br><br>
-				<div class='subtitle'>Type: Parlimentary</div>
-			</td>
 			<tr>
+
 				<td>
-					<br><br><br>
-					<div class='subtitle'>Political: Fun</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<br><br><br>
-					<div class='subtitle'>Seriousness: 2</div></td>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<br><br><br>
-					<div class='subtitle'>Topic: Should students wear uniforms in school?</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<br><br><br>
-					<div class='subtitle'>For: Stephanie (speaking) time left: 3:22</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<br><br><br>
-					<div class='subtitle'>Opposition: Jake</div>
-				</td>
-			</tr>
-			<td>
-				<br><br><br>
-				<div class='subtitle'></div>
-			</td>
-			<tr>
-				<td>
-					<div align="center">
-						<a class="endButton">End turn early</a>
+					<div align="left">
+						Time Remaining:&nbsp;&nbsp;<div id="timeLeft"></div>
 					</div>
 				</td>
+
+				<td>
+					<div align="left">
+						<a class="endButton" onclick="endTurnEarly()">End turn early</a>
+					</div>
+				</td>
+
 			</tr>
 		</table></div>
 		<br><br>
@@ -69,6 +47,7 @@
 	</div>
 	<script type="text/javascript" src="../../js/recorder.js"></script>
 </body>
-<video id="my-video" autoplay></video>
+
+
 
 

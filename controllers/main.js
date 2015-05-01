@@ -23,12 +23,12 @@ exports.getDebateScreen = function(req, res){
 	for(var i = 0; i<lookingDebates.length; i++){
 		if(lookingDebates[i].id == req.params.id && req.params.key == lookingDebates[i].key1){
 			debate = lookingDebates[i];
-			res.render("debateScreen", {"debate":debate, "debator":"first"});
+			res.render("debateScreen", {"debate":debate, "debator":"first", "secret":req.params.key});
 			return;
 		}
 		if(lookingDebates[i].id == req.params.id && req.params.key == lookingDebates[i].key2){
 			debate = lookingDebates[i];
-			res.render("debateScreen", {"debate":debate, "debator":"second"});
+			res.render("debateScreen", {"debate":debate, "debator":"second", "secret":req.params.key});
 			currentDebates.push(lookingDebates[i]);
 			lookingDebates.splice(i,1);
 			return;
@@ -37,12 +37,12 @@ exports.getDebateScreen = function(req, res){
 	for(var i = 0; i<currentDebates.length; i++){
 		if(currentDebates[i].id == req.params.id && req.params.key == currentDebates[i].key1){
 			debate = currentDebates[i];
-			res.render("debateScreen", {"debate":debate, "debator":"first"});
+			res.render("debateScreen", {"debate":debate, "debator":"first", "secret":req.params.key});
 			return;
 		}
 		if(currentDebates[i].id == req.params.id && req.params.key == currentDebates[i].key2){
 			debate = currentDebates[i];
-			res.render("debateScreen", {"debate":debate, "debator":"second"});
+			res.render("debateScreen", {"debate":debate, "debator":"second", "secret":req.params.key});
 			return;
 		}
 	}
@@ -56,7 +56,7 @@ exports.getView = function(req, res){
 exports.viewDebate = function(req, res){
 	for(var i = 0; i<currentDebates.length; i++){
 		if(currentDebates[i] != null && currentDebates[i].id == req.params.id){
-			res.render("debateScreen", {"debate":currentDebates[i], "debator":"viewer"});
+			res.render("debateScreen", {"debate":currentDebates[i], "debator":"viewer", "secret":""});
 		}
 	}
 }
@@ -87,7 +87,10 @@ exports.createDebate = function(req, res){
 		"key1":key1,
 		"id":currentId,
 		"viewerINC":0,
-		"viewers": []
+		"viewers": [],
+		"readyDebators": [],
+		"myTimeout": {},
+		"debateState":0
 	}
 	console.log("created debate");
 	console.log(debate);
