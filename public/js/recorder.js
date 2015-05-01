@@ -63,7 +63,7 @@ socket.on('call viewer', function(msg){
   }
 
   console.log("call viewer");
-  if($('#isDebatorOne').val() == "first" && msg["debateState"]%2 == 0){
+  if($('#isDebatorOne').val() == "first" && msg["debateState"]%2 == 1){
     console.log(msg["viewerID"])
     peer.call(msg["viewerID"], myStream);
   } else if($('#isDebatorOne').val() == "second"){
