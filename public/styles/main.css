@@ -12,8 +12,13 @@ div.title {
 	font-family: myFont;
 	vertical-align: middle;
 	text-align: center;
-	font-size: 350%;
-	color: #838383;
+	font-size: 40;
+	color: #475E8D;
+	background: #16151D none repeat scroll 0% 0%;
+	height: 60px;
+	margin-top: -22px;
+	line-height: 70px;
+	font-weight: 900;
 }
 
 div.timer {
@@ -24,19 +29,20 @@ div.timer {
 	color: #838383;
 }
 
-div.subtitle {
+div.gitID {
 	font-family: myFont;
 	vertical-align: middle;
-	text-align: center;
-	font-size: 175%;
-	color: #838383;
+	color: #A0A7C5;
+	font-size: 116%;
+	margin-left: 30px;
+	margin-top: 8px;
+	font-weight: 900;
 }
 
 div.back_btn {
 	font-size: 140%;
 	color: #838383;
 }
-
 
 
 button.StartDebate {
@@ -189,3 +195,32 @@ p.debates_p{
 	position:relative;
 	top:1px;
 }
+
+body{
+	background: rgb(36, 36, 57) none repeat scroll 0% 0%;
+}
+
+canvas{
+	display: inline-block;
+	vertical-align: baseline;
+	background: #444560;
+	width: 100%;
+	height: 99%;
+	margin-top: -18px;
+}
+
+div.content{
+	height:85%;
+}
+
+div.footer{
+	background: #06060B none repeat scroll 0% 0%;
+	text-align: center;
+	padding: 5px;
+	color: #54535D;
+}
+
+body{
+	overflow: hidden;
+}
+
