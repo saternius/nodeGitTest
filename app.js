@@ -72,7 +72,6 @@ router.route('/joinDebate/:id')
 // starting a new repo
 function pushCommit(){
 	require('simple-git')()
-	     .init()
 	     .add('./*')
 	     .commit("first commit!")
 	     .removeRemote('origin', 'https://github.com/chessgecko/arbitriohackathon');
