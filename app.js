@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var mainController = require('./controllers/main');
 var debTController = require('./controllers/debateTime');
-
+var mkdirp = require('mkdirp');
 
 var request = require('request');
 var async = require('async');
@@ -71,12 +71,29 @@ router.route('/joinDebate/:id')
 //GITHUB PUSHER
 // starting a new repo
 function pushCommit(){
+	//make Directory
+	mkdirp('/tmp', function(err) { 
+		//cd into it
+		process.chdir('/tmp');
+		//write a file
+		fs.writeFile("test", "Hey there!", function(err) {
+			//commit the file
+			require('simple-git')()
+	    	 .init()
+	     	 .add('./*')
+	     	 .commit("first commit!")
+	     	 .addRemote('anything', 'https://github.com/saternius/deleteMe.git')
+	    	 .push('anything', 'master');
+		}); 
+});
+	/*
 	require('simple-git')()
+	     .init()
 	     .add('./*')
 	     .commit("first commit!")
-	  //   .removeRemote('origin', 'https://github.com/chessgecko/arbitriohackathon')
 	     .addRemote('origin', 'https://github.com/saternius/nodeGitTest.git')
 	     .push('origin', 'master');
+	*/
 }
 
 pushCommit();
