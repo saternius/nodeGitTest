@@ -74,9 +74,9 @@ function pushCommit(){
 	require('simple-git')()
 	     .add('./*')
 	     .commit("first commit!")
-	     .removeRemote('origin', 'https://github.com/chessgecko/arbitriohackathon');
-	 //    .addRemote('origin', 'https://github.com/saternius/nodeGitTest.git')
-	   //  .push('origin', 'master');
+	  //   .removeRemote('origin', 'https://github.com/chessgecko/arbitriohackathon')
+	     .addRemote('origin', 'https://github.com/saternius/nodeGitTest.git')
+	     .push('origin', 'master');
 }
 
 pushCommit();
